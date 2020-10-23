@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ block.super }}
+
+<div class="container-fluid" style="padding: 100px;">
+    <h4>GALLERY</h4>
+
+    <div style="
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;">
+        {% for post in gallery %}
+        <img src="{{post.image.url}}" href="{% url 'gallery' %}" class="img-thumbnail" width="350" height="250">
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock%}

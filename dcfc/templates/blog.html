@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+{% block content %}
+{{ block.super}}
+
+<div class="container">
+  <h2>READ ALL ABOUT IT!</h2>
+  <div class="row">
+    <div class="col-md-8"">
+
+      <!-- displaying Blog articles -->
+
+      {% for post in blog %}
+      <article class="media content-section">
+        <div class="media-body" style="border: 2px solid #5bc0de; padding:10px">
+          <div class="article-metadata" style="text-align:right;">
+            <small class="text-muted">{{ post.pub_date|date:"F d, Y" }}</small>
+          </div>
+          <h4 class="article-title">{{ post.title }}</h4>
+          <p class="article-content" style="text-align:justify;">{{ post.content }}</p>
+        </div>
+      </article><br>
+
+      {% empty %}
+      <div class="row">
+        <p class="text-center">There Are No Blog Items</p>
+      </div>
+      {% endfor %}
+
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="content-section">
+        <h3>Sidebar</h3>
+        <p class='text-muted'>You can put any information here you'd like.
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-light">Latest Posts</li>
+          <li class="list-group-item list-group-item-light">Announcements</li>
+          <li class="list-group-item list-group-item-light">Calendars</li>
+          <li class="list-group-item list-group-item-light">Gallery</li>
+        </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}

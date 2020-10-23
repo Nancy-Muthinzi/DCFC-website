@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+{{ block.super }}
+
+<div class="container-fluid"><br>
+    <div class="contact" style="padding-left: 50px; padding-right: 50px;">
+        <p>We would love to hear from you! Kindly get in touch with us for more information:</p><br>
+
+        <form action="contact" method="post" novalidate>
+            {% csrf_token %}
+
+            {% for hidden_field in form.hidden_fields %}
+            {{ hidden_field }}
+            {% endfor %}
+
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for error in form.non_field_errors %}
+                {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% for field in form.visible_fields %}
+            <div class="form-group">
+                {{ field.label_tag }}
+
+                {% if form.is_bound %}
+                {% if field.errors %}
+                {% render_field field class="form-control is-invalid" %}
+                {% for error in field.errors %}
+                <div class="invalid-feedback">
+                    {{ error }}
+                </div>
+                {% endfor %}
+                {% else %}
+                {% render_field field class="form-control is-valid" %}
+                {% endif %}
+                {% else %}
+                {% render_field field class="form-control" %}
+                {% endif %}
+
+                {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-info">Submit</button>
+        </form>
+    </div><br><hr>
+
+    <div class="map" style="text-align: center;">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.777958061091!2d36.772045614622186!3d-1.3084670990456553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1a7c66ce3d23%3A0x90d31ebe4fbc29c!2sThe%20Door%20Christian%20Fellowship%20Church!5e0!3m2!1sen!2ske!4v1600526418482!5m2!1sen!2ske"
+            width="1000" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+            tabindex="0"></iframe>
+    </div><br>
+    <hr>
+</div>
+
+{% endblock%}
+
+{% block scripts %} {{block.super}} {% load static %}
+<script type="text/javascript" src="{% static 'base.js' %}"></script>
+{% endblock %}

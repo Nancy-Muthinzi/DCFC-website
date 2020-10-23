@@ -1,0 +1,107 @@
+body{
+  padding-top: 100px;
+  background-image: url("/static/imgs/tex.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+}
+
+.navbar-nav {
+    margin-left: auto;
+    text-transform: uppercase;
+    font-family: 'Fredoka One', cursive;
+  }
+  
+  .nav-link {
+    color: #b72a28 !important;
+    border-radius: 5px;
+  }
+  
+  .nav-link:hover {
+    color: white !important;
+    background-color: #5bc0de !important; 
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #b72a28;
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+  }
+  
+  p,
+  ul,
+  table {
+    font-size: 18px;
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+  }
+
+  hr{
+    border: 2px solid #5bc0de;
+    border-radius: 2px;
+  }
+
+  .day{
+    padding-top: 25px;
+    /* background-color: lightgray; */
+    /* border: 2px solid #5bc0de; */
+  }
+  
+  .verse{
+    border: 2px solid #5bc0de;
+    border-radius: 25px;
+    margin: 15px;
+    padding: 25px;
+    /* background-color: lightgrey; */
+    text-align: center;
+  }
+  
+  blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+  }
+  
+  blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+  }
+  
+  blockquote p {
+    display: inline;
+  }
+
+  .gallery {
+    text-align: center;
+  }
+  
+  .fas {
+    color: #b72a28;
+    
+  }
+  
+  #date {
+    padding-top: 80px;
+    text-align: right;
+    color: #5bc0de;
+  }
+  
+  #footer {
+    text-align: center;
+    color: white;
+    bottom: 0;
+    width: 100%;
+    
+  }
+  

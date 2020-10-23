@@ -1,0 +1,255 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{{  block.super }}
+
+<!-- change the font color for headlines to the red in the logo -->
+
+<div class="container-fluid">
+    <div class="day">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 style="text-align: left; padding-left: 20px;">{{date|date:"l d-F Y"}}</h5>
+            </div>
+            <div class="col-md-6">
+                <p id="days" style="text-align: right; padding-right: 20px;"></p>
+                <script>
+                    var day;
+                    switch (new Date().getDay()) {
+                        case 0:
+                            day = "Sunday Morning Service @ 10:30am <br> Sunday Evening Service @  05:00pm";
+                            break;
+                        case 1:
+                            day = "Worship Team Practice @ 7:00pm";
+                            break;
+                        case 2:
+                            day = "Tuesday Evening Prayers @ 7:00pm ";
+                            break;
+                        case 3:
+                            day = "Wednesday Midweek Service @ 7:00pm";
+                            break;
+                        case 4:
+                            day = "Thursday Outdoor Outreach @ 7:00pm";
+                            break;
+                        case 5:
+                            day = "Friday Home Cells Bible Study @ 6:30pm";
+                            break;
+                        case 6:
+                            day = "Saturday";
+                    }
+                    document.getElementById("days").innerHTML = "Today's calendar:<br> " + day;
+                </script>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="fam" style="text-align: center;">
+        <img src="/static/imgs/fam.png" width="90%" alt="welcome">
+    </div>
+    <div class="verse">
+        <img src="/static/imgs/verse.png" width="20%" alt="fam">
+
+        <script src="https://www.biblegateway.com/votd/votd.write.callback.js"></script>
+        <script
+            src="https://www.biblegateway.com/votd/get/?format=json&version=NIV&callback=BG.votdWriteCallback"></script>
+    </div>
+
+    <h4>WELCOME</h4>
+    <p style="text-align: center;">
+        The Door Christian Fellowship Church is a Bible-based,
+        Spirit-filled,
+        Non-denominational Christian ministry with a passion to share the good news of Jesus Christ. Worship
+        services
+        follow a contemporary style in a casual environment where you'll hear relevant messages for everyday
+        life.
+        Our
+        warm, friendly congregation has been serving the Nairobi area for more than 20 years. <br> Come check us
+        out! <br><br>
+
+        <!-- <a href="{% url 'program' %}">
+            <button type="button" class="btn btn-outline-info btn-lg" style="border-radius: 10px solid black;">Our
+                Weekly Program</button>
+        </a> -->
+
+        Click here to subscribe to our quarterly newsletter!
+    <form action="{%url 'welcome' %}" method="post" style="text-align: center;">
+        {%csrf_token%}
+        <input type="submit" class="btn btn-outline-info btn-lg" value="Subscribe">
+    </form>
+    </p>
+    <hr>
+
+    <div class="covid" style="text-align: center; background-color: #292b2c;"><br><br>
+        <h4>COVID-19 GUIDANCE</h4><br>
+
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/static/imgs/corona.jpg" class="img-thumbnail" alt="" width="75%" alt="corona">
+            </div>
+            <div class="col-md-7">
+                <p style="text-align: justify; color: white; padding-right: 25px;">Whilst government guidance has
+                    been revised to allow certain
+                    activities to take place in church
+                    buildings,
+                    it is still vital that the necessary hygiene and social distancing precautions are kept in place
+                    in
+                    order to
+                    protect us all and save lives. <br> It is everyone’s responsibility to comply with
+                    the law. This guidance is designed to help those who have responsibility for organising
+                    gatherings, to
+                    ensure they comply with the law and protect parishioners and the public, especially those most
+                    vulnerable to the effects of COVID-19. We acknowledge and share the sadness many are feeling at
+                    not being able to meet together as we used to
+                    do. We prayerfully and confidently look forward to the day when we can all meet together
+                    again.<br> For those unable to join us in our physical church location, you can
+                    stream all our Sunday & midweek services on YouTube.</p>
+            </div>
+
+            <div class="col text-center" style="margin-top: 15px ;"><a
+                    href="https://www.youtube.com/channel/UCbyhRnviqhe04__bn0shD1Q" target="blank">
+                    <button type=" button" class="btn btn-outline-info btn-lg">Join Us For Church
+                        Online</button></a></div>
+        </div><br>
+    </div>
+    <br>
+    <hr>
+
+    <div class="xtrm" style="text-align:center; padding-left: 50px; padding-right:50px;">
+        <h4>HELPING YOUNG PEOPLE LIVE "EXTREME" LIVES FOR JESUS</h4><br>
+
+        <img src="/static/imgs/extrm.jpg" class="img-responsive" width="75%" alt="xtrm">
+
+        <div class="row">
+            <div class="col-md-6"><br>
+                <p style="text-align: justify;">Extreme Youth is a youth ministry that meets as a community
+                    committed to helping young people
+                    live "extreme" lives for Jesus, to bring the saving and transforming work of Jesus wherever our
+                    youth
+                    find themselves in our city.Our youth ministry is built on the conviction that we want to raise
+                    a
+                    generation
+                    of young men and women who's highest treasure in life is Jesus above all things, and who's
+                    greatest
+                    ambition in life will be to make Jesus known above every other pursuit.We want our young people
+                    to
+                    live
+                    with the
+                    conviction that:<br></p>
+                <p>"I have been crucified with Christ and I no longer live, but Christ lives
+                    in
+                    me.<br> The life I live in
+                    the body, I live by faith in the Son of God,<br> who loved me and gave himself for me."<br>
+                    Galatians
+                    2:20</p>
+            </div>
+
+            <div class="col-md-6"><br>
+                <p>Extreme also runs many ministries, by the youth, for the youth. These run on a regular basis
+                    and
+                    are
+                    held at the church and around our community. Some of these include:</p>
+
+                <ul class="icons-grid" style="list-style-type:none;">
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3 border-right">
+                            <li>
+                                <a href="{% url 'bstudy' %}"><span class="fas fa-book" style="font-size:48px;"></span>
+                                    <p>Bible Study</p>
+                                </a>
+                            </li><br>
+                            <li>
+                                <a href="#"><span class="fas fa-running" style="font-size:48px;"></span>
+                                    <p>Sports</p>
+                                </a>
+                            </li>
+                        </div>
+                        <div class="col-md-3">
+                            <li>
+                                <a href="{% url 'fgroup' %}"><span class="fas fa-pencil-alt"
+                                        style="font-size:48px;"></span>
+                                    <p>Focus Groups</p>
+                                </a>
+                            </li><br>
+                            <li>
+                                <a href=""><span class="fas fa-coffee" style="font-size:48px;"></span>
+                                    <p>Fellowship</p>
+                                </a>
+                            </li>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+        <hr>
+    </div>
+
+    <div class="events" style="text-align: center;">
+        <h4>SPECIAL EVENTS</h4><br>
+        <div class="row">
+            <div class="col-md-6" style="padding-left: 75px;">
+                <img src="/static/imgs/conf.jpeg" alt="conference" class="img-thumbnail" alt="" width="100%">
+            </div>
+            <div class="col-md-6">
+                <ul style="list-style-type: none; text-align: justify; padding-right: 50px;">
+                    <li><i class="fas fa-check-circle"></i> Due to COVID-19, our annual Bible Conference, which was
+                        scheduled for the month of August had to
+                        be postponed to December. Be on the look out for the new dates in case of any changes, as
+                        this is
+                        the most exciting event of the year!</li><br>
+                    <li><i class="fas fa-check-circle"></i> Sunday school classes will resume on the 4th of
+                        October</i></li><br>
+                    <li><i class="fas fa-check-circle"></i> New converts classes will also resume on the 4th of
+                        October</i></li><br>
+                </ul>
+            </div>
+        </div>
+
+
+    </div><br>
+    <hr>
+
+    <div class="bg-info" id="footer" style="color: black;"><br>
+        <div id="top">
+            <div class="row" style="font-size: 24px;">
+                <div class="col-md-4">
+                    <i class="fas fa-map-signs"></i>
+                    <p>Ayany Estate, Kibera Drive <br> off Ngong Rd.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-phone-square-alt"></i>
+                    <p>Mobile Number: <br> +254 733 *** ***</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-envelope"></i>
+                    <p>Email Address:<br>doorcfc@gmail.com</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="bottom">
+            <!-- <img src="/static/imgs/white logo.PNG" alt="" width="20%"> -->
+            <div id="links" style="font-size: 24px; background-color: #b72a28;">
+                <a href="https://www.youtube.com/channel/UCbyhRnviqhe04__bn0shD1Q"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.google.com/"><i class="fab fa-google"></i></a>
+                <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+            </div>
+
+            <p>The Door Christian Fellowship Church. Nairobi, Kenya.<br><i class="far fa-copyright"></i> All Rights
+                Reserved</p>
+            <a href="{% url 'admin:index' %}" style="color: #b72a28;">Admin panel</a>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %} {{block.super}}
+    <script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script>
+{% endblock %}
