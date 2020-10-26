@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect, JsonRespons
 from .models import Gallery, Article, Video, NewsLetterRecipients
 import datetime as dt
 from .forms import NewsLetterForm, ContactForm
-from django.core.mail import send_mail
+from django.core.mail import send_mail, BadHeaderError
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
 
@@ -92,6 +92,7 @@ def contact(request):
     if form.is_valid():
         name = form.cleaned_data.get("name")
         email = form.cleaned_data.get("email")
+        residence = form.cleaned_data.get("residence")
         comment = form.cleaned_data.get("comment")
 
         if request.user.is_authenticated():

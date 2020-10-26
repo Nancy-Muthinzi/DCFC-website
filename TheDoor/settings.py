@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%a&@fve=pr1-g-z$r1es61*i0dqlr%bec(ws3gej)3v^v4dhx$'
+MODE=config("MODE", default="dev")
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -132,8 +135,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staic')
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
-EMAIL_HOST= 'smtp.gmail.com'
-EMAIL_HOST_USER= 'kathinimuthinzi@gmail.com'
-EMAIL_HOST_PASSWORD= 'studentaccount'
-EMAIL_USE_TLS= True
-EMAIL_PORT= 587
+EMAIL_HOST= config('EMAIL_HOST')
+EMAIL_HOST_USER= config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD= config('EMAIL_HOST_PASSWORD') 
+EMAIL_USE_TLS= config('EMAIL_USE_TLS')
+EMAIL_PORT= config('EMAIL_PORT')
+

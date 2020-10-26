@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.urls import path
 from . import views
 
@@ -15,7 +16,7 @@ urlpatterns = [
     path('gallery', views.gallery, name='gallery'),
     path(r'search/', views.search_results, name='search_results'), 
     path('video',views.video,name = 'video'),
-    path('contact', views.contact, name='contact')
+    path('contact/', views.contact, name='contact')
 ]
 
 if settings.DEBUG:
