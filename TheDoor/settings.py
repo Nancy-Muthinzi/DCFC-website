@@ -131,3 +131,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staic')
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
+
+EMAIL_HOST= 'smtp.gmail.com'
+EMAIL_HOST_USER= 'kathinimuthinzi@gmail.com'
+EMAIL_HOST_PASSWORD= 'studentaccount'
+EMAIL_USE_TLS= True
+EMAIL_PORT= 587

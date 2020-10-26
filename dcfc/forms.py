@@ -1,27 +1,16 @@
 from django import forms
 
+
 class NewsLetterForm(forms.Form):
-    your_name = forms.CharField(label='First Name',max_length=30)
+    your_name = forms.CharField(label='First Name', max_length=30)
     email = forms.EmailField(label='Email')
 
-class ContactForm(forms.Form):
-    name = forms.CharField(max_length=30)
-    email = forms.EmailField(max_length=254)
-    message = forms.CharField(
-        max_length=2000,
-        widget=forms.Textarea(),
-        help_text='Write here your message!'
-    )
-    source = forms.CharField(       # A hidden input for internal use
-        max_length=50,              # tell from which page the user sent the message
-        widget=forms.HiddenInput()
-    )
 
-    def clean(self):
-        cleaned_data = super(ContactForm, self).clean()
-        name = cleaned_data.get('name')
-        email = cleaned_data.get('email')
-        message = cleaned_data.get('message')
-        if not name and not email and not message:
-            raise forms.ValidationError('You have to write something!')
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=500, label="Name")
+    email = forms.EmailField(max_length=500, label="Email")
+    residence = forms.CharField(max_length=500, label='Area of Residence')
+    comment = forms.CharField(max_length=2000, label='', widget=forms.Textarea(
+        attrs={'placeholder': 'Enter your comment here'}))
+
         

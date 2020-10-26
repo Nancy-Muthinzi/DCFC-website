@@ -1,12 +1,15 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, Http404, HttpResponseRedirect, JsonResponse
-from .models import Gallery, Blog, Video, NewsLetterRecipients
+from .models import Gallery, Article, Video, NewsLetterRecipients
 import datetime as dt
 from .forms import NewsLetterForm, ContactForm
+from django.core.mail import send_mail
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+
 def welcome(request):
     date = dt.date.today()
     if request.method == 'POST':
@@ -46,9 +49,14 @@ def program(request):
     return render(request, 'program.html')
 
 
-def blog(request):
-    blog = Blog.objects.all()
-    return render(request, 'blog.html', {'blog': blog})
+def all_post(request):
+    posts = Article.objects.all()
+    return render(request, 'blog.html', {'posts': posts})
+
+
+def post_detail(request, id):
+    post = get_object_or_404(Article, id=id)
+    return render(request, 'blog_detail.html', {"post": post})
 
 
 def gallery(request):
@@ -76,11 +84,29 @@ def search_results(request):
 
 
 def contact(request):
+    name = ''
+    email = ''
+    comment = ''
 
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            pass  # does nothing, just trigger the validation
+    form = ContactForm(request.POST or None)
+    if form.is_valid():
+        name = form.cleaned_data.get("name")
+        email = form.cleaned_data.get("email")
+        comment = form.cleaned_data.get("comment")
+
+        if request.user.is_authenticated():
+            subject = str(request.user) + "'s Comment"
+        else:
+            subject = "A Visitor's Comment"
+
+        comment = name + " with the email, " + email + \
+            ", sent the following message:\n\n" + comment
+        send_mail(subject, comment, 'kathinimuthinzi@gmail.com', [email])
+
+        context = {'form': form}
+
+        return render(request, 'contact.html', context)
+
     else:
-        form = ContactForm()
-    return render(request, 'contact.html', {'form': form})
+        context = {'form': form}
+        return render(request, 'contact.html', context)
