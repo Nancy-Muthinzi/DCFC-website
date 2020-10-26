@@ -76,6 +76,7 @@
         Click here to subscribe to our quarterly newsletter!
     <form action="{%url 'welcome' %}" method="post" style="text-align: center;">
         {%csrf_token%}
+        {{ form.as_p }}
         <input type="submit" class="btn btn-outline-info btn-lg" value="Subscribe">
     </form>
     </p>
@@ -251,5 +252,5 @@
 {% endblock %}
 
 {% block scripts %} {{block.super}}
-    <script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script>
+<script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script>
 {% endblock %}
